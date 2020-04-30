@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('sidebar');
+    return view('landing_page');
 });
+
+Route::get('/login', 'UserController@login');
+Route::post('/login/action', 'UserController@loginAction');
+
+Route::get('/psikiater', 'PsikiaterController@index');
+Route::get('/pasien', 'PasienController@index');
+
+Route::get('/signout', 'PsikiaterController@signOut');
+Route::get('/sign-out', 'PasienController@signOut');
