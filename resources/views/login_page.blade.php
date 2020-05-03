@@ -1,98 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{$title}}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="favicon.ico"/>
+	<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/fontawesome.min.css">
 <!--===============================================================================================-->
-    <title>{{$title}}</title>
+	<link rel="stylesheet" type="text/css" href="assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="assets/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-
-<!-- CONTENT -->
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <form class="login100-form validate-form" action="{{url('/login/action')}}" method="post">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+				<form class="login100-form validate-form" action="{{url('/login/action')}}" method="post">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
-                <span class="login100-form-title p-b-26">
-                    Welcome
-                </span>
-                <span class="login100-form-title p-b-48">
-                    <i class="zmdi zmdi-font"></i>
-                </span>
+					<span class="login100-form-title p-b-55">
+						Login
+					</span>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                    <input class="input100" type="email" name="email" require>
-                    <span class="focus-input100" data-placeholder="Email"></span>
-                </div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Valid email is: a@b.c">
+						<input class="input100" type="email" name="email" require>
+						<span class="focus-input100" data-placeholder="Email"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+					</div>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <span class="btn-show-pass">
-                        <i class="zmdi zmdi-eye"></i>
-                    </span>
-                    <input class="input100" type="password" name="password" require>
-                    <span class="focus-input100" data-placeholder="Password"></span>
-                </div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Enter password">
+						<input class="input100" type="password" name="password" require>
+						<span class="focus-input100" data-placeholder="Password"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
 
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn" type="submit" value="Login">
-                            Login
-                        </button>
-                    </div>
-                </div>
+					<div class="contact100-form-checkbox m-l-4">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div>
+					
+					<div class="container-login100-form-btn p-t-25">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
 
-                <div class="text-center p-t-115">
-                    <span class="txt1">
-                        Don’t have an account?
-                    </span>
+					<div class="text-center w-full p-t-115">
+						<span class="txt1">
+							Not a member?
+						</span>
 
-                    <a class="txt2" href="#">
-                        Sign Up
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+						<a class="txt1 bo1 hov1" href="#">
+							Sign up now							
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
 
-<!-- <section class="bg-color-0">
-    <div class="container">
-        <div class="row align-items-center half-screen space">
-            <div class="col-md-4 offset-md-4">
-                <form action="{{url('/action')}}" method="post">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Tulis email disini" require><br>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Tulis password disini" require><br>
-                </div>
-                <input type="submit" value="Login" class="btn btn-success btn-block">
-                </form>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<!-- FOOTER -->
-
-
-<!--===============================================================================================-->
-    <script src="assets/js/jquery.min.js"></script>
+	
+<!--===============================================================================================-->	
+	<script src="assets/js/jquery.min.js"></script>
 <!--===============================================================================================-->
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="assets/js/main.js"></script>
 
