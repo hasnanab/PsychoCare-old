@@ -18,7 +18,7 @@ class CreatePesanTable extends Migration
             $table->string('umur');
             $table->text('keluhan');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
         });
     }

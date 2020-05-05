@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table='user';
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -25,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
@@ -36,4 +37,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function pesan(){
+        return $this->hasMany(Pesan::class);
+    }
+    public function psikiater(){
+        return $this->hasOne(Pesan::class, 'user_id','id');
+    }
 }
