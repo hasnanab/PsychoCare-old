@@ -37,5 +37,10 @@ Route::get('/admin/add-psikeater', function () {
 });
 Route::post('/admin/add_psikiater/save', 'AdminController@add_Psikiater');
 
+//Profil
+Route::get('/pasien/profil', 'PasienController@profil');
+Route::post('/profil/{id}/update', 'PasienController@editProfilSave');
+Route::get('/edit/profil', 'PasienController@formEdit');
+
 Route::get('/signout', 'PsikiaterController@signOut');
 Route::get('/sign-out', 'PasienController@signOut');

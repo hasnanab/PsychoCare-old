@@ -34,13 +34,13 @@
                 <a href="#"><span class="fa fa-comments-o mr-3"></span> Tanya Dokter</a>
             </li>
             <li>
-                <a href="/search/psikiater"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
+                <a href="/pasien/cariPsikiater"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
             </li>
             <li>
                 <a href="#"><span class="fa fa-history mr-3"></span> Riwayat</a>
             </li>
             <li>
-                <a href="/edit/profil"><span class="fa fa-cog mr-3"></span> Settings</a>
+                <a href="/pasien/profil"><span class="fa fa-cog mr-3"></span> Settings</a>
             </li>
             <li>
                 <a href="{{url('/signout')}}"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
