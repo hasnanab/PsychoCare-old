@@ -44,3 +44,6 @@ Route::get('/edit/profil', 'PasienController@formEdit');
 
 Route::get('/signout', 'PsikiaterController@signOut');
 Route::get('/sign-out', 'PasienController@signOut');
+
+Route::get('/psikiater', 'PsikiaterController@index');
+Route::get('/pasien', 'PasienController@index');
