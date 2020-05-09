@@ -34,7 +34,7 @@
                 <a href="#"><span class="fa fa-comments-o mr-3"></span> Tanya Dokter</a>
             </li>
             <li>
-                <a href="/search/psikiater"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
+                <a href="pasien/cariPsikiater"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
             </li>
             <li>
                 <a href="#"><span class="fa fa-history mr-3"></span> Riwayat</a>

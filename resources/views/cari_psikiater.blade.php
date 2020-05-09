@@ -23,7 +23,7 @@
                     <h5 class="card-title" id="name"> {{$u->nama}}</h5>
                     <p>{{$u->email}}</p>
                     <p>{{$u->tarif}}</p>
-                    <input type="button" class="btn-success" value="chat">
+                    <a href="{{url('/psikiater/chat/'.$u->id)}}" class="btn btn-primary">Chat</a>
                 </div>
             </div>
         </div>
