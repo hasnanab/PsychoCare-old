@@ -15,10 +15,12 @@ class CreatePesanTable extends Migration
     {
         Schema::create('pesan', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
-            $table->string('umur');
             $table->text('keluhan');
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->integer('from');
+            $table->foreign('from')->references('id')->on('user');
+            $table->integer('to');
+            $table->foreign('to')->references('id')->on('user');
+            $table->boolean('is_read');
             $table->timestamps();
         });
     }
