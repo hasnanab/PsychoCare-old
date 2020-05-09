@@ -166,7 +166,7 @@
                 <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
               </div>
               <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
+                <a type="submit" class="btn btn-block btn-lg btn-primary" href="{{url('/signup')}}">Sign up!</a>
               </div>
             </div>
           </form>

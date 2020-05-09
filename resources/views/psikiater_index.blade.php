@@ -27,17 +27,12 @@
 	  		</div>
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+            <a href="/psikiater"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
           <li>
-              <a href="#"><span class="fa fa-comments-o mr-3"></span> Tanya Dokter</a>
+            <a href="#"><span class="fa fa-comments-o mr-3"></span> Pertanyaan</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-history mr-3"></span> Riwayat</a>
-          </li>
           <li>
             <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
           </li>
@@ -49,11 +44,11 @@
     	</nav>
 
         <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5 pt-5">
+        <!-- <div id="content" class="p-4 p-md-5 pt-5">
         <h2 class="mb-4">PsychoCare</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </div>
+      </div> -->
 		</div>
 
     <script src="assets/js/jquery.min.js"></script>
