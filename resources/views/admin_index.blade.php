@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -19,10 +20,13 @@
         </div>
         <!-- <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);"> -->
         <div class="img bg-wrap text-center py-4">
-            <i class="fa fa-bell" aria-hidden="true"></i>
             <div class="user-logo">
-                <img src="{{$session['foto']}}" style="width: 50%">
+                <div class="logo">
+                    <img src="{{$session['foto']}}" width="50%">
+                </div>
+
                 <h3>{{$session['username']}}</h3>
+
             </div>
         </div>
         <ul class="list-unstyled components mb-5">
@@ -30,19 +34,10 @@
                 <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-comments-o mr-3"></span> Tanya Dokter</a>
+                <a href="/admin/add-psikeater"><span class="fa fa-search mr-3"></span> Add Psikiater</a>
             </li>
             <li>
-                <a href="/pasien/cariPsikiater"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
-            </li>
-            <li>
-                <a href="#"><span class="fa fa-history mr-3"></span> Riwayat</a>
-            </li>
-            <li>
-                <a href="/pasien/profil"><span class="fa fa-cog mr-3"></span> Settings</a>
-            </li>
-            <li>
-                <a href="{{url('/signout')}}"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+                <a href="{{url('/sign-out')}}"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
             </li>
         </ul>
 

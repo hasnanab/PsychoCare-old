@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="custom-menu">
@@ -20,8 +18,9 @@
         </div>
         <!-- <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);"> -->
         <div class="img bg-wrap text-center py-4">
+            <i class="fa fa-bell" aria-hidden="true"></i>
 	  			<div class="user-logo">
-	  				<div class="img" style="background-image: url(assets/images/logo.jpg);"></div>
+	  				<img src="{{$session['foto']}}" style="width: 50%">
 	  				<h3>{{$session['username']}}</h3>
 	  			</div>
 	  		</div>
