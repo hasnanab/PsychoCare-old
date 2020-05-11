@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\WebsocketDemoEvent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
+    broadcast(new WebsocketDemoEvent('some_data'));
     return view('landing_page');
 });
 
@@ -51,3 +52,12 @@ Route::get('/edit/profil/admin', 'AdminController@formEdit');
 
 Route::get('/signout', 'PsikiaterController@signOut');
 Route::get('/sign-out', 'PasienController@signOut');
+
+Route::get('/chat', function () {
+    broadcast(new WebsocketDemoEvent('some_data'));
+    return view('chat');
+})->middleware(\App\Http\Middleware\Cors::class);
+
+Route::get('/psikiater/chat/{id}', 'ChatController@index');
+Route::get('/messages', 'ChatController@fetchMessages');
+Route::post('/messages', 'ChatController@sendMessage');

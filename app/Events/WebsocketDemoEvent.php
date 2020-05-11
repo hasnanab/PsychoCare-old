@@ -2,27 +2,26 @@
 
 namespace App\Events;
 
-use App\Pesan;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewMessageNotification
+class WebsocketDemoEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Pesan $pesan)
+    public function __construct($message)
     {
-        $this->pesan = $pesan;
+        $this->message = $message;
     }
 
     /**
@@ -32,6 +31,10 @@ class NewMessageNotification
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('user.'.$this->pesan->to);
+        return ['my-channel'];
+    }
+    public function broadcastAs()
+    {
+        return 'my-event';
     }
 }

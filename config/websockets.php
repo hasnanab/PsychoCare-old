@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Cors;
 use BeyondCode\LaravelWebSockets\Dashboard\Http\Middleware\Authorize;
 
 return [
@@ -71,6 +72,7 @@ return [
     'middleware' => [
         'web',
         Authorize::class,
+        Cors::class,
     ],
 
     'statistics' => [

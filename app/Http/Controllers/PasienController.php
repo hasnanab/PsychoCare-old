@@ -42,22 +42,21 @@ class PasienController extends Controller
             ->select('user.id','nama', 'email', 'tarif', 'foto')
             ->where('role_id', 3)
             ->get();
-
         return view('cari_psikiater', ['user' => $user]);
     }
 
     public function search(Request $request)
     {
-        $users = User::join('psikiater', 'user.id', '=', 'user_id')
-            ->select('nama', 'email', 'tarif', 'foto')
-            ->where('role_id', 3)
-            ->get();
-
-        $user = collect($users)->filter(function ($value) use ($request) {
-            return strpos(strtolower($value->nama), strtolower($request->search)) !== false;
-        });
-
-        return $user;
+//        $users = User::join('psikiater', 'user.id', '=', 'user_id')
+//            ->select('nama', 'email', 'tarif', 'foto')
+//            ->where('role_id', 3)
+//            ->get();
+//
+//        $user = collect($users)->filter(function ($value) use ($request) {
+//            return strpos(strtolower($value->nama), strtolower($request->search)) !== false;
+//        });
+//
+//        return $user;
     }
 
     public function profil(Request $request){
