@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $table='user';
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','nama', 'username','email','password', 'telepon', 'foto'
     ];
 
     /**
@@ -47,5 +47,8 @@ class User extends Authenticatable
     }
     public function psikiater(){
         return $this->hasOne(Pesan::class, 'user_id','id');
+    }
+    public function chatmapping(){
+        return $this->hasMany(ChatMapping::class);
     }
 }

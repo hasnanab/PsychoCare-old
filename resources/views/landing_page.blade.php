@@ -33,6 +33,8 @@
     </div>
   </nav>
 
+  @csrf
+
   <!-- Masthead -->
   <header class="masthead text-white text-center">
     <div class="overlay"></div>
@@ -225,7 +227,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

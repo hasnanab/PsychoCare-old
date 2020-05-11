@@ -24,32 +24,69 @@ class PasienController extends Controller
             'foto' => $request->session()->get('s_foto'),
             'role' => $request->session()->get('s_role'),
         );
-        $data['title'] = "Pasien - PsychoCare";
-        return view('pasien_index', $data);
+        $id = $request->session()->get('s_id');
+        $data['user'] = User::where('id', $id)->get();
+        $gambar = collect($data['user'])->flatMap(function ($photo) use ($id) {
+            $foto = $photo->foto;
+            $username = $photo->username;
+            return User::where('id', $id)->get();
+        })->all();
+//       dd($gambar);
+        $data['title']= "Pasien - PsychoCare";
+        return view('pasien_index', ['gambar'=>$gambar]);;
     }
 
     public function cariPsikiater()
     {
         $user = User::join('psikiater', 'user.id', '=', 'user_id')
-            ->select('nama', 'email', 'tarif', 'foto')
+            ->select('user.id','nama', 'email', 'tarif', 'foto')
             ->where('role_id', 3)
             ->get();
-
         return view('cari_psikiater', ['user' => $user]);
     }
 
     public function search(Request $request)
     {
-        $users = User::join('psikiater', 'user.id', '=', 'user_id')
-            ->select('nama', 'email', 'tarif', 'foto')
-            ->where('role_id', 3)
-            ->get();
+//        $users = User::join('psikiater', 'user.id', '=', 'user_id')
+//            ->select('nama', 'email', 'tarif', 'foto')
+//            ->where('role_id', 3)
+//            ->get();
+//
+//        $user = collect($users)->filter(function ($value) use ($request) {
+//            return strpos(strtolower($value->nama), strtolower($request->search)) !== false;
+//        });
+//
+//        return $user;
+    }
 
-        $user = collect($users)->filter(function ($value) use ($request) {
-            return strpos(strtolower($value->nama), strtolower($request->search)) !== false;
-        });
+    public function profil(Request $request){
+        $id = $request->session()->get('s_id');
+        $data['pasien'] = User::where('id', $id)->get();
+        $data['title'] = "PROFIL";
+        return view('profil', $data);
+    }
 
-        return $user;
+    public function formEdit(Request $request){
+        $id = $request->session()->get('s_id');
+        $pasien = User::where('id', $id)->first();
+        return view('form_edit_profil', ['pasien'=>$pasien]);
+    }
+
+    public function editProfilSave(Request $request){
+        $id = $request->session()->get('s_id');
+        $directory = 'assets/photo/pasien';
+        $file = $request->file('file');
+        $file->move($directory, $file->getClientOriginalName());
+        $pasien = User::where('id', $id)->first();
+        $pasien->id = $id;
+        $pasien->username = $request->username;
+        $pasien->nama = $request->nama;
+        $pasien->email = $request->email;
+        $pasien->telepon = $request->telepon;
+        $pasien->foto = $directory."/".$file->getClientOriginalName();
+        $pasien->role_id = 2;
+        $pasien->save();
+        return redirect('/pasien/profil');
     }
 
     public function profil(Request $request){
