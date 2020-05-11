@@ -89,6 +89,36 @@ class PasienController extends Controller
         return redirect('/pasien/profil');
     }
 
+    public function profil(Request $request){
+        $id = $request->session()->get('s_id');
+        $data['pasien'] = User::where('id', $id)->get();
+        $data['title'] = "PROFIL";
+        return view('profil', $data);
+    }
+
+    public function formEdit(Request $request){
+        $id = $request->session()->get('s_id');
+        $pasien = User::where('id', $id)->first();
+        return view('form_edit_profil', ['pasien'=>$pasien]);
+    }
+
+    public function editProfilSave(Request $request){
+        $id = $request->session()->get('s_id');
+        $directory = 'assets/photo/pasien';
+        $file = $request->file('file');
+        $file->move($directory, $file->getClientOriginalName());
+
+        $pasien = User::where('id', $id)->first();
+        $pasien->id = $id;
+        $pasien->username = $request->username;
+        $pasien->nama = $request->nama;
+        $pasien->email = $request->email;
+        $pasien->telepon = $request->telepon;
+        $pasien->foto = $directory."/".$file->getClientOriginalName();
+        $pasien->role_id = 2;
+        $pasien->save();
+        return redirect('/pasien/profil');
+    }
 
     public function signOut(Request $request)
     {
