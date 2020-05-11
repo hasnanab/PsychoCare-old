@@ -22,10 +22,10 @@
         <div class="img bg-wrap text-center py-4">
             <div class="user-logo">
                 <div class="logo">
-                    <img src="{{$session['foto']}}" width="50%">
-                </div>
-
-                <h3>{{$session['username']}}</h3>
+                    @foreach($gambar as $g)
+                        <img src="{{$g->foto}}" style="width: 50%">
+                        <h3>{{$g->username}}</h3>
+                    @endforeach
 
             </div>
         </div>
@@ -34,15 +34,17 @@
                 <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
             </li>
             <li>
-                <a href="/admin/add-psikeater"><span class="fa fa-search mr-3"></span> Add Psikiater</a>
+                <a href="/admin/add-psikeater"><span class="fa fa-user-plus mr-3"></span> Add Psikiater</a>
+            </li>
+            <li>
+                <a href="/admin/profil"><span class="fa fa-cog mr-3"></span> Settings</a>
             </li>
             <li>
                 <a href="{{url('/sign-out')}}"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
             </li>
         </ul>
-
+        </div>
     </nav>
-
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
         <h2 class="mb-4">PsychoCare</h2>

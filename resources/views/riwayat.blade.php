@@ -9,21 +9,17 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<input class="form-control mr-sm-3" type="search" placeholder="Cari Psikiater" aria-label="Search"
-       name="search" id="search">
-@foreach($user as $u)
-    <div class="card mb-3" style="max-width:700px" id="item" user="{{$u->nama}}">
+<h1>History</h1>
+@foreach($riwayat as $r)
+    <div class="card mb-3" style="max-width:700px" id="item">
         <div class="row no-gutters">
             @csrf
             <div class="col-md-4">
-                <img src="{{url($u->foto)}}" class="card-img" alt="..." style="width: 200px; height:200px">
+                <img src="{{url($r->foto)}}" class="card-img" alt="..." style="width: 50%">
             </div>
             <div class="col-md-8">
                 <div class="card-body item">
-                    <h5 class="card-title" id="name"> {{$u->nama}}</h5>
-                    <p>{{$u->email}}</p>
-                    <p>{{$u->tarif}}</p>
-                    <a class="btn btn-primary" href="{{url('/chat/psikiater/'.$u->id)}}">chat</a>
+                    <h5 class="card-title" id="name"> {{$r->nama}}</h5>
                 </div>
             </div>
         </div>
@@ -38,26 +34,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-    let dataListId = [];
-    $(document).ready(() => {
-        $("#item").each(function (index, e) {
-            dataListId.push(e.getAttribute("user").toLowerCase());
-        })
-    });
-
-    $("#search").keyup((e) => {
-        let searchText = e.target.value;
-        $(".card").each(function (index, e) {
-            e.style.display="none";
-            console.log(e.getAttribute("user").toLowerCase(), searchText, e.getAttribute("user").toLowerCase().includes(searchText.toLowerCase()));
-            if(e.getAttribute("user").toLowerCase().includes(searchText.toLowerCase())) {
-                e.style.display="block";
-            }
-        })
-        console.log(e.target.value);
-    })
-</script>
 </body>
 </html>

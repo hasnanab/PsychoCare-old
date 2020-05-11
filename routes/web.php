@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\WebsocketDemoEvent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    broadcast(new WebsocketDemoEvent('some_data'));
     return view('landing_page');
 });
 
@@ -25,25 +27,38 @@ Route::post('/signup/action', 'UserController@signupAction');
 
 //Psikiater
 Route::get('/psikiater', 'PsikiaterController@index');
-
+Route::get('/psikiater/profil', 'PsikiaterController@profil');
+Route::post('/profil/{id}/psikiater/update', 'PsikiaterController@editProfilSave');
+Route::get('/edit/profil/psikiater', 'PsikiaterController@formEdit');
 //Pasien
 Route::get('/pasien', 'PasienController@index');
 Route::get('/pasien/cariPsikiater', 'PasienController@cariPsikiater');
 Route::get('/search/psikiater', 'PasienController@search');
+Route::get('/chat/psikiater/{id}', 'MessageController@index');
+Route::post('/sendMessage', 'MessageController@sendMessage');
+Route::get('/mappingChat', 'MessageController@mappingChat');
+Route::get('/pasien/profil', 'PasienController@profil');
+Route::post('/profil/{id}/update', 'PasienController@editProfilSave');
+Route::get('/edit/profil', 'PasienController@formEdit');
+
 //Admin
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/add-psikeater', function () {
     return view('add_psikiater');
 });
 Route::post('/admin/add_psikiater/save', 'AdminController@add_Psikiater');
-
-//Profil
-Route::get('/pasien/profil', 'PasienController@profil');
-Route::post('/profil/{id}/update', 'PasienController@editProfilSave');
-Route::get('/edit/profil', 'PasienController@formEdit');
+Route::get('/admin/profil', 'AdminController@profil');
+Route::post('/profil/{id}/admin/update', 'AdminController@editProfilSave');
+Route::get('/edit/profil/admin', 'AdminController@formEdit');
 
 Route::get('/signout', 'PsikiaterController@signOut');
 Route::get('/sign-out', 'PasienController@signOut');
 
-Route::get('/psikiater', 'PsikiaterController@index');
-Route::get('/pasien', 'PasienController@index');
+Route::get('/chat', function () {
+    broadcast(new WebsocketDemoEvent('some_data'));
+    return view('chat');
+})->middleware(\App\Http\Middleware\Cors::class);
+
+Route::get('/psikiater/chat/{id}', 'ChatController@index');
+Route::get('/messages', 'ChatController@fetchMessages');
+Route::post('/messages', 'ChatController@sendMessage');

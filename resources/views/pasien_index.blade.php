@@ -21,8 +21,10 @@
         <div class="img bg-wrap text-center py-4">
             <i class="fa fa-bell" aria-hidden="true"></i>
             <div class="user-logo">
-                <img src="{{$session['foto']}}" style="width: 50%">
-                <h3>{{$session['username']}}</h3>
+                @foreach($gambar as $g)
+                <img src="{{$g->foto}}" style="width: 50%">
+                <h3>{{$g->username}}</h3>
+                @endforeach
             </div>
         </div>
         <ul class="list-unstyled components mb-5">
@@ -30,13 +32,10 @@
                 <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-comments-o mr-3"></span> Tanya Dokter</a>
-            </li>
-            <li>
                 <a href="/pasien/cariPsikiater"><span class="fa fa-search mr-3"></span> Cari Dokter</a>
             </li>
             <li>
-                <a href="#"><span class="fa fa-history mr-3"></span> Riwayat</a>
+                <a href="{{url('/mappingChat')}}"><span class="fa fa-history mr-3"></span> Riwayat</a>
             </li>
             <li>
                 <a href="/pasien/profil"><span class="fa fa-cog mr-3"></span> Settings</a>
