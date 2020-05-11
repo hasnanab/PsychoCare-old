@@ -23,8 +23,16 @@ class AdminController extends Controller
             'foto' => $request->session()->get('s_foto'),
             'role' => $request->session()->get('s_role'),
         );
-        $data['title']= "Admin - PsychoCare";
-        return view('admin_index', $data);
+        $id = $request->session()->get('s_id');
+        $data['user'] = User::where('id', $id)->get();
+        $gambar = collect($data['user'])->flatMap(function ($photo) use ($id) {
+            $foto = $photo->foto;
+            $username = $photo->username;
+            return User::where('id', $id)->get();
+        })->all();
+//       dd($gambar);
+        $data['title']= "Pasien - PsychoCare";
+        return view('admin_index', ['gambar'=>$gambar]);;
     }
 
     public function add_Psikiater(Request $request){
@@ -49,6 +57,37 @@ class AdminController extends Controller
         }
         return redirect('/admin');
     }
+
+    public function profil(Request $request){
+        $id = $request->session()->get('s_id');
+        $data['admin'] = User::where('id', $id)->get();
+        $data['title'] = "PROFIL";
+        return view('profil_admin', $data);
+    }
+
+    public function formEdit(Request $request){
+        $id = $request->session()->get('s_id');
+        $admin = User::where('id', $id)->first();
+        return view('form_edit_profil_admin', ['admin'=>$admin]);
+    }
+
+    public function editProfilSave(Request $request){
+        $id = $request->session()->get('s_id');
+        $directory = 'assets/photo/admin';
+        $file = $request->file('file');
+        $file->move($directory, $file->getClientOriginalName());
+        $admin = User::where('id', $id)->first();
+        $admin->id = $id;
+        $admin->username = $request->username;
+        $admin->nama = $request->nama;
+        $admin->email = $request->email;
+        $admin->telepon = $request->telepon;
+        $admin->foto = $directory."/".$file->getClientOriginalName();
+        $admin->role_id = 1;
+        $admin->save();
+        return redirect('/admin/profil');
+    }
+
     public function signOut(Request $request) {
         $request->session()->flush();
         return redirect('/');

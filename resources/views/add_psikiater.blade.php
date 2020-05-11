@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>Masukan Data Produk</h2>
+    <h2>Masukan Data Psikiater</h2>
     <form action="{{url('/admin/add_psikiater/save')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
