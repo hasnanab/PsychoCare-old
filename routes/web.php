@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\FormSubmitted;
+use App\Events\FormSubmitted2;
 use App\Events\WebsocketDemoEvent;
 use Illuminate\Support\Facades\Route;
 
@@ -24,22 +26,28 @@ Route::post('/login/action', 'UserController@loginAction');
 
 Route::get('/signup', 'UserController@signup');
 Route::post('/signup/action', 'UserController@signupAction');
-
+Route::get('/reset/password', function () {
+    return view('form-reset-pass');
+});
+Route::post('/reset/password/input', 'UserController@prosesInputEmail');
 //Psikiater
 Route::get('/psikiater', 'PsikiaterController@index');
 Route::get('/psikiater/profil', 'PsikiaterController@profil');
 Route::post('/profil/{id}/psikiater/update', 'PsikiaterController@editProfilSave');
 Route::get('/edit/profil/psikiater', 'PsikiaterController@formEdit');
+Route::get('/history/chat', 'PsikiaterController@viewHistoryChat');
+Route::get('/chat/user/{id}', 'MessageController@historyChat');
+
 //Pasien
 Route::get('/pasien', 'PasienController@index');
 Route::get('/pasien/cariPsikiater', 'PasienController@cariPsikiater');
 Route::get('/search/psikiater', 'PasienController@search');
 Route::get('/chat/psikiater/{id}', 'MessageController@index');
-Route::post('/sendMessage', 'MessageController@sendMessage');
+Route::post('/sender', 'MessageController@sendMessage');
 Route::get('/mappingChat', 'MessageController@mappingChat');
-Route::get('/pasien/profil', 'PasienController@profil');
-Route::post('/profil/{id}/update', 'PasienController@editProfilSave');
-Route::get('/edit/profil', 'PasienController@formEdit');
+Route::get('/pasien/profil', 'PasienController@pasienProfil');
+Route::post('/profil/{id}/update', 'PasienController@editPasienProfilSave');
+Route::get('/edit/profil', 'PasienController@formEditPasien');
 
 //Admin
 Route::get('/admin', 'AdminController@index');
@@ -62,3 +70,20 @@ Route::get('/chat', function () {
 Route::get('/psikiater/chat/{id}', 'ChatController@index');
 Route::get('/messages', 'ChatController@fetchMessages');
 Route::post('/messages', 'ChatController@sendMessage');
+
+
+//PUSHER
+Route::get('/counter' , function (){
+   return view('counter');
+});
+Route::get('/sender' , function (){
+    return view('sender');
+});
+//Route::post('/sender' , function (){
+//   //this is a post
+////    ngambil dari __countruct
+//    $chat = request()->chat;
+////    FormSubmitted => Event
+//    event(new FormSubmitted($chat));
+//});
+

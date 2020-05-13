@@ -21,6 +21,9 @@ class CreatePesanTable extends Migration
             $table->integer('to');
             $table->foreign('to')->references('id')->on('user');
             $table->boolean('is_read');
+            $table->integer('room_chat');
+            $table->foreign('room_chat')->references('id')->on('chat_mapping')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

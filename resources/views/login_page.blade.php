@@ -70,6 +70,14 @@
 						<a class="txt1 bo1 hov1" href="{{url('/signup')}}">
 							Sign up now
 						</a>
+                        <br>
+                        <span class="txt1">
+							forget password?
+						</span>
+
+                        <a class="txt1 bo1 hov1" href="{{url('/reset/password')}}">
+                            Reset password
+                        </a>
 					</div>
 				</form>
 			</div>

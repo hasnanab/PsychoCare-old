@@ -98,4 +98,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\PsychoCare\resources\views/welcome.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\PsychoCare\resources\views/counter.blade.php ENDPATH**/ ?>
