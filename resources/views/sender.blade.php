@@ -16,8 +16,9 @@
         var channel = pusher.subscribe('my-channel');
         channel.bind('form-submitted', function (data) {
             // alert(JSON.stringify(data));
-            if(data.room_chat === $('#room_id').val() && data.to === $('#user_id').val()) {
-                $(".pesan").prepend(`<span> ${data.chat} </span>`)
+            if (data.room_chat === $('#room_id').val() && data.to === $('#user_id').val()) {
+                // code for notification put in this
+                $(".pesan").prepend(`<span> ${data.from} - ${data.pesan} </span>`)
             }
         });
     </script>
@@ -25,13 +26,11 @@
 <body>
 <div class="container">
 
-
     <div>{{$to->nama}}</div>
     @foreach($pesan as $p)
-    <div class="pesan">
-    {{$p->from}} - {{$p->pesan}}
-    </div>
+        {{$p->from}} - {{$p->pesan}} </br>
     @endforeach
+    <div class="pesan"></div>
     <div>
         @csrf
         <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
@@ -49,22 +48,32 @@
         crossorigin="anonymous"></script>
 <script>
     $(".kirim").on("click", () => {
+        sendRequest();
+    });
+
+    $("#chat").on('keypress',function(e) {
+        if(e.which === 13) {
+            sendRequest();
+        }
+    });
+
+    let sendRequest = () => {
         $.ajax({
             type: 'POST',
             url: '/sender',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'chat': $("#chat").val(),
-                'user_id' : $("#user_id").val(),
-                'room_id' : $("#room_id").val()
+                'user_id': $("#user_id").val(),
+                'room_id': $("#room_id").val()
             },
             success: function (data) {
                 $("#chat").val("");
-                $(".pesan").prepend(`<span> ${data.chat} </span>`)
+                $(".pesan").prepend(`<span> ${data.from} - ${data.pesan} </span>`);
                 console.log(data);
             }
         });
-    });
+    }
 </script>
 </body>
 </html>
