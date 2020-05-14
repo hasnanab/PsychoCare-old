@@ -25,15 +25,10 @@ class PasienController extends Controller
             'role' => $request->session()->get('s_role'),
         );
         $id = $request->session()->get('s_id');
-        $data['user'] = User::where('id', $id)->get();
-        $gambar = collect($data['user'])->flatMap(function ($photo) use ($id) {
-            $foto = $photo->foto;
-            $username = $photo->username;
-            return User::where('id', $id)->get();
-        })->all();
-//       dd($gambar);
+        $data['user'] = User::where('id', $id)->first();
+        $foto =  $data['user']['foto'];
         $data['title']= "Pasien - PsychoCare";
-        return view('pasien_index', ['gambar'=>$gambar]);;
+        return view('pasien_index', $data, ['foto'=>$foto]);
     }
 
     public function cariPsikiater()
@@ -89,20 +84,20 @@ class PasienController extends Controller
         return redirect('/pasien/profil');
     }
 
-    public function profil(Request $request){
+    public function pasienProfil(Request $request){
         $id = $request->session()->get('s_id');
         $data['pasien'] = User::where('id', $id)->get();
         $data['title'] = "PROFIL";
         return view('profil', $data);
     }
 
-    public function formEdit(Request $request){
+    public function formEditPasien(Request $request){
         $id = $request->session()->get('s_id');
         $pasien = User::where('id', $id)->first();
         return view('form_edit_profil', ['pasien'=>$pasien]);
     }
 
-    public function editProfilSave(Request $request){
+    public function editPasienProfilSave(Request $request){
         $id = $request->session()->get('s_id');
         $directory = 'assets/photo/pasien';
         $file = $request->file('file');

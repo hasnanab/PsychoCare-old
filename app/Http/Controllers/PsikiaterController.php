@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ChatMapping;
+use App\Pesan;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +13,7 @@ class PsikiaterController extends Controller
     private $pages;
 
     public function _construct() {
-        $this ->pages =array();
+        $this ->pages = array();
 
     }
 
@@ -26,11 +28,8 @@ class PsikiaterController extends Controller
         $id = $request->session()->get('s_id');
         $data['user'] = User::where('id', $id)->get();
         $gambar = collect($data['user'])->flatMap(function ($photo) use ($id) {
-            $foto = $photo->foto;
-            $username = $photo->username;
             return User::where('id', $id)->get();
         })->all();
-//       dd($gambar);
         $data['title']= "Psikiater - PsychoCare";
         return view('psikiater_index', ['gambar'=>$gambar]);
     }
@@ -66,6 +65,18 @@ class PsikiaterController extends Controller
         return redirect('/psikiater/profil');
     }
 
+    public function viewHistoryChat(Request $request){
+        $id = $request->session()->get('s_id');
+        $chat = ChatMapping::where('pasien_id', $id)->orWhere('psikiater_id', $id)->get();
+        $data['response'] = $chat->map(function ($data) use ($id) {
+            return array(
+                'room_id' => $data->id,
+                'user' => $data->pasien_id == $id ? User::where('id', $data->psikiater_id)->first()
+                    : User::where('id',$data->pasien_id)->first()
+            );
+        });
+        return view('history-chat-psikiater', $data);
+    }
 
     public function signOut(Request $request) {
         $request->session()->flush();

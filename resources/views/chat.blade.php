@@ -25,7 +25,7 @@
 </p>
 <form action="/sendMessage" method="post">
     @csrf
-    <div class="input-group">
+    <div clas="input-group">
         <input type="text" name="message" class="form-control input-sm" placeholder="Type your message here..." v-model="newMessage" @keyup.enter="sendMessage">
     </div>
     <input type="submit" value="SEND" class="btn btn-success"/>

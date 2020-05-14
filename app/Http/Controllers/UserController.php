@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 use App\Role;
 use App\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller {
     public function __construct() {}
@@ -73,12 +72,24 @@ class UserController extends Controller {
             $user->email =$request->email;
             $user->password = $request->pass;
             $user->telepon = $request->telepon;
-            $user->foto = $directory."/".$file->getClientOriginalName();
+            $user->foto = $directory . "/" . $file->getClientOriginalName();
             $user->role_id = 2;
             $user->save();
             return redirect('/login');
-        }else {
+        } else {
             return redirect('/signup');
+        }
+    }
+
+    public function prosesInputEmail(Request $request)
+    {
+        if ($request->method() == "POST") {
+            $reset = User::where('email', $request->email)->first();
+            $reset->password = $request->password;
+            $reset->save();
+            return redirect('/login');
+        }else{
+            redirect('/reset/password');
         }
     }
 }

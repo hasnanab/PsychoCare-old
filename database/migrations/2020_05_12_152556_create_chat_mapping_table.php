@@ -14,7 +14,7 @@ class CreateChatMappingTable extends Migration
     public function up()
     {
         Schema::create('chat_mapping', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->autoIncrement();
             $table->integer('pasien_id');
             $table->foreign('pasien_id')->references('id')->on('user');
             $table->integer('psikiater_id');
